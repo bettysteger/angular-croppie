@@ -1,6 +1,6 @@
 {
   "name": "angular-croppie",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "main": "angular-croppie.js",
   "authors": [
     "Bettina Steger <betty@lingohub.com>"
@@ -22,6 +22,6 @@
   ],
   "dependencies": {
     "angular": ">=1.5.0",
-    "Croppie": "croppie#2.1.0"
+    "croppie": "^2.1.0"
   }
 }
