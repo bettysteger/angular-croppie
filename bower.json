@@ -1,0 +1,26 @@
+{
+  "name": "angular-croppie",
+  "main": "angular-croppie.js",
+  "authors": [
+    "Bettina Steger <betty@lingohub.com>"
+  ],
+  "description": "Use Croppie (https://github.com/Foliotek/Croppie) for a simple image cropping.",
+  "keywords": [
+    "avatar",
+    "image",
+    "cropping"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": ">=1.5.0",
+    "Croppie": "croppie#2.1.0"
+  }
+}
