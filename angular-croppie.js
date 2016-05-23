@@ -1,5 +1,5 @@
 angular.module('angularCroppie', []).
-  component('croppie', function () {
+  component('croppie', {
     bindings: {
       src: '=',
       ngModel: '='
