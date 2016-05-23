@@ -1,5 +1,6 @@
 {
   "name": "angular-croppie",
+  "version": "0.0.1",
   "main": "angular-croppie.js",
   "authors": [
     "Bettina Steger <betty@lingohub.com>"
