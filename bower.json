@@ -11,7 +11,7 @@
     "cropping"
   ],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/lpsBetty/angular-croppie",
   "ignore": [
     "**/.*",
     "node_modules",
