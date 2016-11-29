@@ -4,7 +4,7 @@ angular.module('angularCroppie', []).
       src: '=',
       ngModel: '='
     },
-    controller: function ($scope, $element) {
+    controller: ['$scope', '$element', function ($scope, $element) {
       var ctrl = this;
 
       if(!ctrl.src) { return; }
@@ -27,5 +27,5 @@ angular.module('angularCroppie', []).
       c.bind({
         url: ctrl.src
       });
-    }
+    }]
   });
