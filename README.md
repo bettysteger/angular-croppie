@@ -18,6 +18,7 @@ Use the Angular 1.5 component:
 ```
 <croppie src="cropped.source" ng-model="cropped.image"></croppie>
 ```
+Simple Example: [plnkr](https://plnkr.co/edit/tKTdhsUBr57coqlZBRgF?p=preview)
 
 
 ## Documentation
