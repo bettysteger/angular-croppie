@@ -1,7 +1,7 @@
 angular.module('angularCroppie', []).
   component('croppie', {
     bindings: {
-      src: '=',
+      src: '<',
       ngModel: '='
     },
     controller: function ($scope, $element) {
