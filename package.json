@@ -1,6 +1,6 @@
 {
   "name": "angular-croppie",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Use Croppie (https://github.com/Foliotek/Croppie) for a simple image cropping.",
   "main": "angular-croppie.js",
   "scripts": {
@@ -15,14 +15,14 @@
     "image",
     "cropping"
   ],
-  "author": "Bettina Steger <betty@lingohub.com>",
+  "author": "Bettina Steger <admin@bettysteger.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/lpsBetty/angular-croppie/issues"
   },
   "homepage": "https://github.com/lpsBetty/angular-croppie#readme",
   "dependencies": {
-    "angular": ">=1.5.5",
-    "croppie": "^2.1.0"
+    "angular": ">=1.6.0",
+    "croppie": "^2.4.0"
   }
 }

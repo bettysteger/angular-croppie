@@ -20,11 +20,11 @@ angular.module('angularCroppie', []).
           });
         }
       });
-      
+
       ctrl.$onChanges = function (changesObj) {
         var src = changesObj.src && changesObj.src.currentValue;
-        if(src) {  
-          // bind an image to croppie 
+        if(src) {
+          // bind an image to croppie
           c.bind({
             url: src
           });
