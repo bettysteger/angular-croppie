@@ -27,5 +27,14 @@ angular.module('angularCroppie', []).
       c.bind({
         url: ctrl.src
       });
+      
+      ctrl.$onChanges = function (changesObj) {
+        var src = changesObj.src && changesObj.src.currentValue;
+        if(src) {
+          c.bind({
+            url: src
+          });
+        }
+      };
     }
   });
