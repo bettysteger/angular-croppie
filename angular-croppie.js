@@ -7,8 +7,6 @@ angular.module('angularCroppie', []).
     controller: function ($scope, $element) {
       var ctrl = this;
 
-      if(!ctrl.src) { return; }
-
       var c = new Croppie($element[0], {
         viewport: {
           width: 200,
@@ -22,15 +20,11 @@ angular.module('angularCroppie', []).
           });
         }
       });
-
-      // bind an image to croppie
-      c.bind({
-        url: ctrl.src
-      });
       
       ctrl.$onChanges = function (changesObj) {
         var src = changesObj.src && changesObj.src.currentValue;
-        if(src) {
+        if(src) {  
+          // bind an image to croppie 
           c.bind({
             url: src
           });
