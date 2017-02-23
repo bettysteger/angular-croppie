@@ -6,37 +6,57 @@
   component('croppie', {
     controller: AngularCroppie,
     bindings: {
-      src: '<',
-      ngModel: '=',
-      onChange: '&',
-      options: '@',
-      resultConfig: '<'
+      ngModel: '=', //always holds the most recent value of Croppie.result
+      onChange: '&', //called when Croppie fires an update. Returns $event: {model: ngModel}
+      options: '<', // Options object (needs to be present when component is initialized) and doesn't change
+      zoom: '<', // calls Croppie.setZoom(zoom) on change
+      rotate: '<', // calls Croppie.rotate(rotate) on change
+      bindConfig: '<', //calls Croppie.bind(bindConfig) on change
+      resultConfig: '<', //calls Croppie.result(resultConfig) on change (results in onChange being called) 
+      src: '<' // For simplifying bindConfig: it changes url in bindConfig then calls Croppie.bind(bindConfig)
     }
   });
   AngularCroppie.$inject = ['$scope', '$element'];
-
 
   /*@ngInject*/
   function AngularCroppie($scope, $element) {
     var ctrl = this;
     var c;
 
-
-
     ctrl.$onInit = function() {
-      //Append/Override update method in 
-      vm.options.update = onCroppieUpdate;
-      c = new Croppie($element[0],
-        vm.options);
+      if (!c) {
+        ctrl.options.update = onCroppieUpdate;
+        c = new Croppie($element[0],
+          ctrl.options);
+      }
     };
 
     ctrl.$onChanges = function(changesObj) {
-      var src = changesObj.src && changesObj.src.currentValue;
-      if (src) {
-        // bind an image to croppie
-        c.bind({
-          url: src
-        });
+      if (!c) {
+        ctrl.$onInit();
+      }
+      if (changesObj.bindConfig) {
+        var bindConf = changesObj.bindConfig.currentValue || {};
+        if (bindConf) {
+          // bind an image to croppie
+          c.bind(bindConf);
+        }
+      }
+      if (changesObj.zoom) {
+        var zoom = changesObj.zoom.currentValue || {};
+        c.setZoom(zoom);
+      }
+      if (changesObj.rotate) {
+        var rotate = changesObj.rotate.currentValue || {};
+        c.rotate(rotate);
+      }
+      if (changesObj.resultConfig) {
+        onCroppieUpdate();
+      }
+      if (changesObj.src) {
+        var src = changesObj.src.currentValue || {};
+        vm.bindConfig.url = src;
+        c.bind(vm.bindConfig);
       }
     };
 
@@ -46,11 +66,15 @@
       }
     };
 
-
     function onCroppieUpdate() {
-      c.result(vm.resultConfig).then(function(img) {
+      c.result(ctrl.resultConfig).then(function(img) {
         $scope.$apply(function() {
           ctrl.ngModel = img;
+        });
+        ctrl.onChange({
+          $event: {
+            model: ctrl.ngModel
+          }
         });
       });
     }
