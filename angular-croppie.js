@@ -12,7 +12,7 @@
       zoom: '<', // calls Croppie.setZoom(zoom) on change
       rotate: '<', // calls Croppie.rotate(rotate) on change
       bindConfig: '<', //calls Croppie.bind(bindConfig) on change
-      resultConfig: '<', //calls Croppie.result(resultConfig) on change (results in onChange being called) 
+      resultConfig: '<', //calls Croppie.result(resultConfig) on change (results in onChange being called)
       src: '<' // For simplifying bindConfig: it changes url in bindConfig then calls Croppie.bind(bindConfig)
     }
   });
@@ -28,6 +28,34 @@
         ctrl.options.update = onCroppieUpdate;
         c = new Croppie($element[0],
           ctrl.options);
+
+        var changesObj = {};
+        if (ctrl.src) {
+          changesObj.src = {
+            currentValue: ctrl.src
+          };
+        }
+        if (ctrl.zoom) {
+          changesObj.zoom = {
+            currentValue: ctrl.zoom
+          };
+        }
+        if (ctrl.rotate) {
+          changesObj.rotate = {
+            currentValue: ctrl.rotate
+          };
+        }
+        if (ctrl.bindConfig) {
+          changesObj.bindConfig = {
+            currentValue: ctrl.bindConfig
+          };
+        }
+        if (ctrl.resultConfig) {
+          changesObj.resultConfig = {
+            currentValue: ctrl.resultConfig
+          };
+        }
+        ctrl.$onChanges(changesObj);
       }
     };
 
@@ -54,9 +82,15 @@
         onCroppieUpdate();
       }
       if (changesObj.src) {
-        var src = changesObj.src.currentValue || {};
-        vm.bindConfig.url = src;
-        c.bind(vm.bindConfig);
+        var src = changesObj.src.currentValue || '';
+        if (ctrl.bindConfig) {
+          ctrl.bindConfig.url = src;
+        } else {
+          ctrl.bindConfig = {
+            url: src
+          };
+        }
+        c.bind(ctrl.bindConfig);
       }
     };
 
