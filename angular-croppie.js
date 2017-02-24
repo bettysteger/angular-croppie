@@ -25,9 +25,6 @@
 
     ctrl.$onInit = function() {
       if (!c) {
-        ctrl.options.update = onCroppieUpdate;
-        c = new Croppie($element[0],
-          ctrl.options);
 
         var changesObj = {};
         if (ctrl.src) {
@@ -60,8 +57,8 @@
     };
 
     ctrl.$onChanges = function(changesObj) {
-      if (!c) {
-        ctrl.$onInit();
+      if (!c && (changesObj.bindConfig || changesObj.src)) {
+        initCroppie();
       }
       if (changesObj.bindConfig) {
         var bindConf = changesObj.bindConfig.currentValue || {};
@@ -101,16 +98,27 @@
     };
 
     function onCroppieUpdate() {
-      c.result(ctrl.resultConfig).then(function(img) {
-        $scope.$apply(function() {
-          ctrl.ngModel = img;
+      if (c) {
+        c.result(ctrl.resultConfig).then(function(img) {
+          $scope.$apply(function() {
+            ctrl.ngModel = img;
+          });
+          ctrl.onChange({
+            $event: {
+              model: ctrl.ngModel
+            }
+          });
         });
-        ctrl.onChange({
-          $event: {
-            model: ctrl.ngModel
-          }
-        });
-      });
+      }
+    }
+
+    function initCroppie() {
+
+      if (!c) {
+        ctrl.options.update = onCroppieUpdate;
+        c = new Croppie($element[0],
+          ctrl.options);
+      }
     }
   }
 
