@@ -1,6 +1,6 @@
 {
   "name": "angular-croppie",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Use Croppie (https://github.com/Foliotek/Croppie) for a simple image cropping.",
   "main": "angular-croppie.js",
   "scripts": {

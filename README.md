@@ -18,6 +18,13 @@ Use the Angular 1.5 component:
 ```
 <croppie src="cropped.source" ng-model="cropped.image"></croppie>
 ```
+
+or with [Croppie options](http://foliotek.github.io/Croppie/#documentation): 
+
+```
+<croppie src="cropped.source" ng-model="cropped.image" options="{ viewport: { width: 400, height: 280 } }"></croppie>
+```
+
 Simple Example: [plnkr](https://plnkr.co/edit/tKTdhsUBr57coqlZBRgF?p=preview)
 
 
