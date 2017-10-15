@@ -5,7 +5,7 @@ angular.module('angularCroppie', []).
       ngModel: '=',
       options: '<'
     },
-    controller: function ($scope, $element) {
+    controller: ['$scope', '$element', function ($scope, $element) {
       var ctrl = this;
 
       var options = angular.extend({
@@ -34,5 +34,5 @@ angular.module('angularCroppie', []).
           });
         }
       };
-    }
+    }]
   });
