@@ -8,31 +8,33 @@ angular.module('angularCroppie', []).
     controller: ['$scope', '$element', function ($scope, $element) {
       var ctrl = this;
 
-      var options = angular.extend({
-        viewport: {
-          width: 200,
-          height: 200
-        }
-      }, ctrl.options);
+      this.$onInit = function(){
+        var options = angular.extend({
+          viewport: {
+            width: 200,
+            height: 200
+          }
+        }, ctrl.options);
 
-      options.update = function () {
-        c.result('canvas').then(function(img) {
-          $scope.$apply(function () {
-            ctrl.ngModel = img;
+        options.update = function () {
+          c.result('canvas').then(function(img) {
+            $scope.$apply(function () {
+              ctrl.ngModel = img;
+            });
           });
-        });
-      };
+        };
 
-      var c = new Croppie($element[0], options);
+        var c = new Croppie($element[0], options);
 
-      ctrl.$onChanges = function (changesObj) {
-        var src = changesObj.src && changesObj.src.currentValue;
-        if(src) {
-          // bind an image to croppie
-          c.bind({
-            url: src
-          });
-        }
+        ctrl.$onChanges = function (changesObj) {
+          var src = changesObj.src && changesObj.src.currentValue;
+          if(src) {
+            // bind an image to croppie
+            c.bind({
+              url: src
+            });
+          }
+        };
       };
     }]
   });
