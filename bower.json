@@ -1,9 +1,9 @@
 {
   "name": "angular-croppie",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "angular-croppie.js",
   "authors": [
-    "Bettina Steger <admin@bettysteger.com>"
+    "Bettina Steger <hello@bettysteger.com>"
   ],
   "description": "Use Croppie (https://github.com/Foliotek/Croppie) for a simple image cropping.",
   "keywords": [
