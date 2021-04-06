@@ -10,6 +10,7 @@ angular.module('angularCroppie', []).
 
       this.$onInit = function(){
         var options = angular.extend({
+          url: ctrl.src,
           viewport: {
             width: 200,
             height: 200
